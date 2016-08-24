@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jzv-6u-BCv" customClass="MeiTuanPaoPaoView">
+            <rect key="frame" x="0.0" y="0.0" width="231" height="74"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category_1" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-RO-PWq">
+                    <rect key="frame" x="10" y="7" width="63" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="63" id="Rcr-Xq-2y7"/>
+                        <constraint firstAttribute="height" constant="60" id="xVl-3d-Gtc"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="烤肉节" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59t-pr-f6j">
+                    <rect key="frame" x="83" y="7" width="138" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="西单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgn-IZ-xuj">
+                    <rect key="frame" x="83" y="46" width="138" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7t-dx-lxm">
+                    <rect key="frame" x="0.0" y="0.0" width="231" height="74"/>
+                    <connections>
+                        <action selector="paoPaoButtonClick:" destination="jzv-6u-BCv" eventType="touchUpInside" id="wYZ-Vi-G17"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.37254901959999998" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="59t-pr-f6j" secondAttribute="trailing" constant="10" id="3cs-c6-FC8"/>
+                <constraint firstItem="59t-pr-f6j" firstAttribute="leading" secondItem="Dte-RO-PWq" secondAttribute="trailing" constant="10" id="GL8-36-ipP"/>
+                <constraint firstItem="b7t-dx-lxm" firstAttribute="leading" secondItem="jzv-6u-BCv" secondAttribute="leading" id="IGG-0z-N5Y"/>
+                <constraint firstItem="Dte-RO-PWq" firstAttribute="centerY" secondItem="jzv-6u-BCv" secondAttribute="centerY" id="IvI-O8-eja"/>
+                <constraint firstItem="lgn-IZ-xuj" firstAttribute="bottom" secondItem="Dte-RO-PWq" secondAttribute="bottom" constant="-5" id="QVS-4N-sN3"/>
+                <constraint firstItem="b7t-dx-lxm" firstAttribute="top" secondItem="jzv-6u-BCv" secondAttribute="top" id="U4i-BI-Zel"/>
+                <constraint firstItem="lgn-IZ-xuj" firstAttribute="trailing" secondItem="59t-pr-f6j" secondAttribute="trailing" id="Xyx-O9-Rpv"/>
+                <constraint firstItem="Dte-RO-PWq" firstAttribute="leading" secondItem="jzv-6u-BCv" secondAttribute="leading" constant="10" id="ihf-Nh-6rY"/>
+                <constraint firstItem="lgn-IZ-xuj" firstAttribute="leading" secondItem="59t-pr-f6j" secondAttribute="leading" id="ksL-3y-h59"/>
+                <constraint firstAttribute="trailing" secondItem="b7t-dx-lxm" secondAttribute="trailing" id="pSU-YX-Seo"/>
+                <constraint firstAttribute="bottom" secondItem="b7t-dx-lxm" secondAttribute="bottom" id="qSG-kb-kiJ"/>
+                <constraint firstItem="59t-pr-f6j" firstAttribute="top" secondItem="Dte-RO-PWq" secondAttribute="top" id="u3A-2b-jh3"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="areaNameLable" destination="lgn-IZ-xuj" id="Br2-fi-KXo"/>
+                <outlet property="shopImageView" destination="Dte-RO-PWq" id="8UD-lx-1uv"/>
+                <outlet property="shopNameLable" destination="59t-pr-f6j" id="7xh-ZH-vto"/>
+            </connections>
+            <point key="canvasLocation" x="349.5" y="195"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="category_1" width="38" height="44"/>
+    </resources>
+</document>
