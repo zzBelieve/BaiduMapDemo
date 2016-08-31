@@ -222,3 +222,58 @@ annotationView.paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:paop
 别问我产品经理怎么不说话了,已经被我拖出去打死了.
 
 ------
+
+
+###3.4 地理编码(Geo).反地理编码(ReGeo)
+
+```
+	地理编码 : 将中文地址或地名描述转换为地球表面上相应位置的功能.
+	反地理编码 : 将地球表面的地址坐标转换为标准地址的过程.	
+```
+
+
+####导入头文件 `#import <BaiduMapAPI_Search/BMKSearchComponent.h>`, 关键的类 `BMKGeoCodeSearch`
+
+```
+
+- (BMKGeoCodeSearch *)geocodesearch{ //懒加载
+
+
+    if (!_geocodesearch) {
+        
+        _geocodesearch = [[BMKGeoCodeSearch alloc] init];
+        _geocodesearch.delegate = self;
+    }
+    return _geocodesearch;
+
+}
+
+
+```
+
+套路来了.. 通过`BMKGeoCodeSearchDelegate`代理得到Geo和ReGeo的相关信息.
+
+```
+/**
+ *
+ *  @param result   地理编码结果
+ *  @param error    错误信息
+ */
+- (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+- 
+```
+
+```
+
+/**
+ *
+ *  @param result   反地理编码结果
+ *  @param error    错误信息
+ */
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+
+```
+
+封装了一个工具类 Demo效果如下:
+
+![GeoReGeo.gif](http://upload-images.jianshu.io/upload_images/668391-8ecb3a779f6e6663.gif?imageMogr2/auto-orient/strip)

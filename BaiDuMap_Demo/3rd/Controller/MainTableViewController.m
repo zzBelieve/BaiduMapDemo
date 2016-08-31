@@ -23,7 +23,7 @@
     if (!_dataArray) {
         
         
-        _dataArray = @[@"定位,自定义精度圈",@"覆盖物",@"自定义标注,大头针"];
+        _dataArray = @[@"定位,自定义精度圈",@"覆盖物",@"自定义标注,大头针",@"地理编码和反地理编码"];
     }
     
     return _dataArray;
@@ -63,7 +63,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSArray *vcArrayNameArray = @[@"LocationViewController",@"OverLayViewController",@"MeiTuanViewController"];
+    NSArray *vcArrayNameArray = @[@"LocationViewController",@"OverLayViewController",@"MeiTuanViewController",@"GeoAndReGeoViewController"];
     
     NSString *vcName = vcArrayNameArray[indexPath.row];
     
