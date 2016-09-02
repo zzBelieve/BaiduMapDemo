@@ -10,6 +10,7 @@
 
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationService.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import "BottomView.h"
 
 #import "MapTool.h"
@@ -147,13 +148,22 @@
     
     [_mapView addAnnotation:annotation];
     
+    // 1 系统自带计算距离的方法
+//    CLLocation *destloc = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+//    CLLocation *selfloc = self.userLocation.location;
+//    
+//    CLLocationDistance distanceSystem = [destloc distanceFromLocation:selfloc];
     
-    CLLocation *destloc = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
-    CLLocation *selfloc = self.userLocation.location;
     
-    CLLocationDistance distance = [destloc distanceFromLocation:selfloc];
+    //2 百度的计算距离方法
+    BMKMapPoint point1 = BMKMapPointForCoordinate(self.userLocation.location.coordinate);
+    BMKMapPoint point2 = BMKMapPointForCoordinate(coordinate);
+    CLLocationDistance distanceBaiDu = BMKMetersBetweenMapPoints(point1,point2);
     
-    self.bottomView.distanceLabel.text = [NSString stringWithFormat:@"距您%d米",(int)distance];
+    
+
+    
+    self.bottomView.distanceLabel.text = [NSString stringWithFormat:@"距您%d米",(int)distanceBaiDu];
     self.bottomView.lonLabel.text = [NSString stringWithFormat:@"经度 ：%f",coordinate.longitude];
     self.bottomView.latLabel.text = [NSString stringWithFormat:@"纬度 ：%f",coordinate.latitude];
 
