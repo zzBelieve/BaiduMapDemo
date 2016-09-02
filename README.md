@@ -277,3 +277,79 @@ annotationView.paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:paop
 封装了一个工具类 Demo效果如下:
 
 ![GeoReGeo.gif](http://upload-images.jianshu.io/upload_images/668391-8ecb3a779f6e6663.gif?imageMogr2/auto-orient/strip)
+
+
+
+###3.5 不同坐标系之间的转换.
+
+#### 3.5.1 先扫个盲.
+
+```
+ WGS84: 即地图坐标,美国GPS使用的是WGS84的坐标系统。GPS系统获得的坐标系统，基本为标准的国际通用的WGS84坐标系统.
+ 
+ GCJ-02: 即火星坐标,是由中国国家测绘局制订的地理信息系统的坐标系统。它是一种对经纬度数据的加密算法，即加入随机的偏差。国内出版的各种地图系统（包括电子形式），出于国家安全考虑，必须至少采用GCJ-02对地理位置进行首次加密.
+ 
+ BD-09: 即百度坐标: 在GCJ02基础上，进行了BD-09二次加密措施，API支持从WGS/GCJ转换成百度坐标，不支持反转.
+
+```
+
+国内常用地图的坐标系:
+
+地图 | 坐标系
+:----------- |  -----------: 
+百度地图      | 百度坐标（BD-09）       
+腾讯搜搜地图   |火星坐标
+图吧MapBar地图 |图吧坐标
+高德MapABC地图API|火星坐标
+凯立德地图 | 火星坐标（转为K码）        
+
+
+
+
+#### 3.5.1 WGS84.GCJ-02转换为BD-09 (百度公开API)
+
+导入头文件 `#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>`
+
+```
+  /**
+ *坐标转换函数，从原始GPS坐标，mapbar坐标,google坐标，51地图坐标，mapabc坐标转换为百度坐标（51地图坐标需要显出10000）
+ *@param coordinate 待转换的坐标
+ *@param type 待转换的坐标系类型，GPS为原始GPS坐标，COMMON为google坐标，51地图坐标，mapabc坐标
+ *@return 返回的NSDictionry中包含“x”，“y”字段，各自对应经过base64加密之后的x，y坐标
+ */
+ UIKIT_EXTERN NSDictionary* BMKConvertBaiduCoorFrom(CLLocationCoordinate2D coordinate,BMK_COORD_TYPE type);
+
+```
+
+举个🌰
+
+```
+
+    CLLocationCoordinate2D originLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lng);
+    //转换GPS坐标至百度坐标
+    NSDictionary* baiDudic = BMKConvertBaiduCoorFrom(test,BMK_COORDTYPE_GPS);
+    CLLocationCoordinate2D baiduCoor = BMKCoorDictionaryDecode(baiDudic);//转换后的百度坐标
+
+```
+
+
+#### 3.5.2  BD-09 转换为 WGS84.GCJ-02(百度没公开API,只能google了)
+
+在Github 找到这个转换算法 <https://github.com/TinyQ/TQLocationConverter>
+
+```
+ *  将WGS-84转为GCJ-02(火星坐标)
++(CLLocationCoordinate2D)transformFromWGSToGCJ:(CLLocationCoordinate2D)wgsLoc;
+
+
+ *  将GCJ-02(火星坐标)转为百度坐标
++ (CLLocationCoordinate2D)transformFromGCJToBaidu:(CLLocationCoordinate2D)p;
+
+ *  将百度坐标转为GCJ-02(火星坐标)
++ (CLLocationCoordinate2D)transformFromBaiduToGCJ:(CLLocationCoordinate2D)p;
+
+
+ *  将GCJ-02(火星坐标)转为WGS-84
++ (CLLocationCoordinate2D)transformFromGCJToWGS:(CLLocationCoordinate2D)p;
+
+```
